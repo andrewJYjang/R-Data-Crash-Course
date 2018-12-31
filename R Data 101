@@ -63,3 +63,27 @@ getwd()
 install.packages("pdftools")
 install.packages("shiny")
 library(shiny)
+
+library(pdftools)
+library(stringr)
+library(wordcloud)
+bts_text <- pdf_text("BTSband.pdf")
+save(bts_text, file="bts_text.RData")
+
+bts_text_line <- strsplit(bts_text, split="\n")
+bts_text_sent <- strsplit(unlist(bts_text_line), split ="\\.")
+bts_text_word <- strsplit(unlist(bts_text_sent), split=" ")
+bts_text_word <- unlist(bts_text_word)
+bts_text_word[1:20]
+bts_text_word_main <- bts_text_word[nchar(bts_text_word)>0]
+which(str_detect(tolower(bts_text_word_main), "references"))
+bts_text_word_main <- bts_text_word_main[1:6732]
+bts_text_word_freq <- sort(table(bts_text_word_main), decreasing = TRUE)
+head(bts_text_word_freq)
+bts_text_word_freq[1:50]
+tail(bts_text_word_freq[bts_text_word_freq==1])
+wordcloud(words = names(bts_text_word_freq),
+          freq = bts_text_word_freq,
+          random.order = FALSE,
+          min.freq = 5,
+          scale = c(4,0.3))
