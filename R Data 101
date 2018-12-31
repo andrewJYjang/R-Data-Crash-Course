@@ -1,0 +1,65 @@
+c <- a / b
+d <- c + 2019
+fruits <- c("apple", "melon", "orange", "apple", "grape", "mango", "apple", "orange")
+sort(fruits)
+table(fruits)
+unique(fruits)
+index[3]
+index(3)
+fruits[3]
+fruits[-3]
+fruits[3:5]
+fruits[-3:5]
+fruits[-2:4]
+fruits[-7]
+fruits
+fruits[-2,4] 
+fruits(c(1:5))
+fruits[c(1:5)]
+fruits[fruits == "orange"]
+fruits["apple"]
+fruits[fruits != "orange"]
+fruits %in% c("apple", "oragne", "kiwi")
+[fruits %in% c("apple", "orange", "kiwi")]
+(fruits %in% c("apple", "orange", "kiwi"))
+toupper(fruits[5])
+tolower(fruits[5])
+vecnum <- c(1,5)
+vecchar <- c("v", "e", "c", "t", "o", "r")
+vecbool <- c(T,T,F,T,FALSE)
+obj1 <- c("BTS", "is", "known", "as", "the", "Bantan Boys")
+obj1
+obj2 <- c("And", "BTS", "is", "7 members", "South Korean", "boy band")
+obj2
+class(obj1)
+class(obj2)
+myList <- list(obj1,obj2)
+class(myList)
+myList
+print(myList)
+myList[[1]]
+class(myList[[1]])
+myList[[2]]
+myList[[1]][3]
+class(myList[2])
+myList[2]
+paragraph <- paste(myList[[1]], myList[[2]], collapse=" ")
+paragraph
+para_list <- strsplit(paragraph, split=" ")
+class(para_list)
+para_vector <- unlist(para_list)
+para_vector
+class(para_vector)
+
+cv1 <- c("T", "E", "X", "T")
+CV2 <- c("Text", "mining", "is", "interesting")
+?nchar
+str_length(paragraph)
+install.packages(stringr)
+library(stringr)
+str_length(paragraph)
+nchar(paragraph)
+getwd()
+install.packages("pdftools")
+install.packages("shiny")
+library(shiny)
