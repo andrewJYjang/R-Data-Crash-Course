@@ -1,0 +1,47 @@
+bts_text <- pdf_text("BTSband.pdf")
+class(bts_text)
+bts_text[1]
+unlist(str_extract_all(bts_text[1], pattern = " "))[1:30]
+bts_text_token <- str_split(unlist(bts_text), pattern = " ")
+unlist(bts_text_token)[1:30]
+bts_sent_trim <- unlist(bts_text_token)[str_length(unlist(bts_text_token))>0]
+bts_sent_trim[1:30]
+str_extract_all(bts_text[1], " The ")
+
+unique(unlist(str_extract_all(bts_sent_trim, "t.e")))
+
+dot_words <- c("e.g", "eng", "e g", "e-g")
+unlist(str_extract_all(dot_words, "e.g"))
+unlist(str_extract_all(dot_words, "e\\.g"))
+
+fns <- c("fan", "fen", "fin", "fon", "fun")
+str_extract_all(fns, "f[aeioun]n")
+unlist(str_extract_all(fns, "f[aeioun]n"))
+
+fnx <- c("fan", "fin", "fun", "f0n", "f.n", "f1n", "fain")
+str_view(fnx, "f[aeiou]n")
+str_view(fnx)
+?str_view
+
+triplets <- c("bts", "the", "BTS", "The", "010", "070", ":~)","^^;")
+unlist(str_extract_all(triplets, "[a-z][a-z][a-z]"))
+unlist(str_extract_all(triplets, "[A-Z]{3}"))
+unlist(str_extract_all(triplets, "[A-Z][a-z]+"))
+unlist(str_extract_all(triplets, "[0-9]+$"))
+unlist(str_extract_all(triplets, "[^a-zA-Z0-9]{1,}"))
+unlist(str_extract_all(triplets, "[a-zA-Z0-9^]+"))
+
+unlist(str_extract_all(fnx, "f\\.n"))
+unlist(str_extract_all(fnx, "f[.]n"))
+unlist(str_extract_all(triplets, "\\d{3}"))
+unlist(str_extract_all(triplets, "\\D+"))
+unlist(str_extract_all(triplets, "\\w+"))
+unlist(str_extract_all(triplets, "\\W+"))
+unlist(str_extract_all(triplets, "\\s+"))
+unlist(str_extract_all(triplets, "\\S+"))
+triplets
+unlist(str_extract_all(triplets, "[[:lower:]]+"))
+unlist(str_extract_all(triplets, "[[:alpha:]]+"))
+unlist(str_extract_all(triplets, "[[:digit:]]{1,3}"))
+unlist(str_extract_all(triplets, "[[:punct:]~^]+"))
+unlist(str_extract_all(triplets, "[[:lower:][:punct:]]"))
