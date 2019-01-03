@@ -1,0 +1,51 @@
+vector1 <- c("piano", "flute", "guita", "violin", "cello")
+vector2 <- c(2, 4, 3, 5, 3)
+df <- data.frame(vector1, vector2)
+df
+class(df)
+table(df)
+
+df <- read.csv("example_studentlist.csv")
+View(df)
+df
+install.packages("readxl")
+library("readxl")
+df2 <- read_excel("studentlist.xlsx")
+df2
+View(df2)
+df2[c("height","weight")]
+mean(df2$grade)
+mean(df2$height)
+mean(df2$weight)
+mean(df2$age)
+class(df2)
+
+df2$name
+paste(df2$name, collapse = ",")
+paste(df2$name, collapse = " ")
+
+df3 <- data.frame(english = c(100, 90, 80, 90),
+                  math = c(100, 90, 90, 95),
+                  class = c(1, 2, 3, 4))
+df3
+write.csv(df3, file = "df3.csv")
+save(df3, file = "df3.rda")
+rm(df3)
+df3
+load("df3.rda")
+df3
+
+head(df2)
+tail(df2)
+dim(df2)
+str(df2)
+summary(df2)
+
+install.packages("ggplot2")
+mpg <- as.data.frame(ggplot2::mpg)
+head(mpg)
+tail(mpg)
+dim(mpg)
+str(mpg)
+summary(mpg)
+?mpg
