@@ -1,0 +1,182 @@
+
+df_barun <- read_excel("20181011_20190111.xls")
+df_barun
+tail(df_barun)
+dim(df_barun)
+str(df_barun)
+summary(df_barun)
+
+
+df_br <- df_barun
+df_br
+df_br <-rename(df_br, period=기간, barun=)
+df_br
+hist(df_br$barun)
+class(df_br$barun)
+df_br$barun <- as.numeric(df_br$barun)
+hist(df_br$barun)
+summary(df_br$barun)
+qplot(df_br$barun)
+ggplot(data = barun, aes(x=period, y=barun)) + geom_line()
+df_br$period <- as.numeric((df_br$period))
+ggplot(data = df_br, aes(x = df_br$period, y = df_br$barun)) + geom_bar()
+df_br
+df_br$period <- as.factor(df_barun$기간)
+df_br
+summary(df_br)
+install.packages("dygraphs")
+library(dygraphs)
+
+df_br$period <- as.Date(df_barun$기간)
+
+df_br <- ggplot2::df_br
+library(xts)
+br <- xts(df_br$barun, order.by = df_br$period)
+dygraph(br)
+df_dmin <- read_excel("2_20181011_20190111.xls")
+df_dmin
+df_dmin <- rename(df_dmin, period=기간, dmin=)
+df_dmin
+df_dm <- df_dmin
+df_dm$period <- as.Date(df_dm$period)
+df_dm$dmin <- as.numeric(df_dm$dmin)
+dm <- xts(df_dm$dmin, order.by = df_dm$period)
+dygraph(dm)
+dygraph(dm, br)
+
+df_total <- read_excel("3_20181011_20190111.xls")
+df_total
+View(df_total)
+df_total <- rename(df_total, period=기간, dbr=, dmin=, dja=, dmpy=, dj=)
+df_total
+df_total_new <- df_total
+df_total_new$period <- as.Date(df_total_new$period)
+df_total_new$dbr <- as.numeric(df_total_new$dbr)
+df_total_new$dmin <- as.numeric(df_total_new$dmin)
+df_total_new$dja <- as.numeric(df_total_new$dja)
+df_total_new$dmpy <- as.numeric(df_total_new$dmpy)
+df_total_new$dj <- as.numeric(df_total_new$dj)
+df_total_analysis <- xts(df_total_new$dbr, df_total_new$dmin, df_total_new$dja, df_total_new$dmpy, df_total_new$dj, order.by = df_total_new$period)
+summary(df_total_new)
+View(df_total_new)
+colnames(df_total_new)  
+hist(df_total_new)
+ggplot(df_total_new, aes(x=df_total_new$period, y=df_total_new$dbr))
+sum(df_total_new$dbr)
+dmm <- xts(df_total_new$dmpy, order.by = df_total_new$period)
+dygraph(dmm)
+
+
+install.packages("ggthemes")
+library("ggthemes")
+ggplot(data=diamonds, aes(x=carat, y=price, colour=clarity)) + geom_point() + theme_wsj()
+df_c_x <- c(df_total_new$dbr, df_total_new$dmin, df_total_new$dja, df_total_new$dmpy, df_total_new$dj)
+ggplot(data = df_total_new, aes(x=df_total_new$period, y=df_c_x))
+df_c_x
+ggplot(df_total_new, aes(x=df_total_new$period, y=df_total_new$dbr)) + geom_line(colour="orange1", size=1) + geom_point(colour="orangered2", size=3) + theme_light()
+summarise(df_total_new$dbr, df_total_new$dmin, df_total_new$dja, df_total_new$dmpy, df_total_new$dj)
+dim(df_total_new$dbr, df_total_new$dmin, df_total_new$dja, df_total_new$dmpy, df_total_new$dj)
+str(df_total_new$dbr, df_total_new$dmin, df_total_new$dja, df_total_new$dmpy, df_total_new$dj)
+summarize(df_total_new$dbr, df_total_new$dmin, df_total_new$dja, df_total_new$dmpy, df_total_new$dj)
+dim(df_total_new)
+str(df_total_new)
+class(df_total_new)
+df_total_new %>% summarise(mean_dbr=mean(df_total_new$dbr))
+sum(df_total_new$dbr)
+16663 / 93
+
+df_total_new %>% summarise(mean_dmin=mean(df_total_new$dmin))
+df_total_new %>% summarise(mean_dja=mean(df_total_new$dja))
+df_total_new %>% summarise(mean_dmpy=mean(df_total_new$dmpy))
+df_total_new %>% summarise(mean_dj=mean(df_total_new$dj))
+hist(mean_dbr, mean_dmin, mean_dja, mean_dmpy, mean_dj)
+
+class(df_total_new$dbr)
+summary(df_total_new$dbr)
+qplot(df_total_new$dbr) 
+
+party <- c(df_total_new$dbr, df_total_new$dmin, df_total_new$dja, df_total_new$dmpy, df_total_new$dj)
+summary(party)
+
+boxplot(df_total_new$dbr, df_total_new$dmin, df_total_new$dja, df_total_new$dmpy, df_total_new$dj)
+df_x <- boxplot(df_total_new$dbr, df_total_new$dmin, df_total_new$dja, df_total_new$dmpy, df_total_new$dj)
+df_x
+
+dbr_trend <- xts(df_total_new$dbr, order.by = df_total_new$period)
+head(dbr_trend)
+dygraph(dbr_trend)
+dygraph(dbr_trend) %>% dyRangeSelector()
+
+dmin_trend <- xts(df_total_new$dmin, order.by = df_total_new$period)
+dygraph(dmin_trend)
+dygraph(dbr_trend) %>% dyRangeSelector()
+
+dja_trend <- xts(df_total_new$dja, order.by = df_total_new$period)
+dygraph(dja_trend)
+
+dmpy_trend <- xts(df_total_new$dmpy, order.by = df_total_new$period)
+dygraph(dmpy_trend)
+
+dj_trend <- xts(df_total_new$dj, order.by = df_total_new$period)
+dygraph(dj_trend)
+
+total_trend <- cbind(dbr_trend, dmin_trend, dja_trend, dmpy_trend, dj_trend)
+colnames(total_trend) <- c(" ", " ", " ", " ", " ")
+head(total_trend)
+dygraph(total_trend) %>% dyRangeSelector()
+df_total_month <- read_excel("통합_월20181011_20190111 (1).xls")
+df_total_month
+df_month <- rename(df_total_month, period=기간, dbrm=, dminm=, djam=, dmpym=, djm=)
+df_month
+df_month_a <- df_month
+df_month_a$period <- as.Date(df_month_a$period)
+df_month_a$dbrm <- as.numeric(df_month_a$dbrm)
+df_month_a$dminm <- as.numeric(df_month_a$dminm)
+df_month_a$djam <- as.numeric(df_month_a$djam)
+df_month_a$dmpym <- as.numeric(df_month_a$dmpym)
+df_month_a$djm <- as.numeric(df_month_a$djm)
+df_month_a
+tail(df_month_a)
+View(df_month_a)
+
+boxplot(df_month_a$dbrm, df_month_a$dminm, df_month_a$djam, df_month_a$dmpym, df_month_a$djm)
+dbrm_trend <- xts(df_month_a$dbrm, order.by = df_month_a$period)
+xts(dbrm_trend)
+dygraph(dbrm_trend)
+dminm_trend <- xts(df_month_a$dminm, order.by = df_month_a$period)
+dygraph(dminm_trend)
+djam_trend <- xts(df_month_a$djam, order.by = df_month_a$period)
+dygraph(djam_trend)
+dmpym_trend <- xts(df_month_a$dmpym, order.by = df_month_a$period)
+dygraph(dmpym_trend)
+djm_trend <- xts(df_month_a$djm, order.by = df_month_a$period)
+dygraph(djm_trend)
+total_m_trend <- cbind(dbrm_trend, dminm_trend, djam_trend, dmpym_trend, djm_trend)
+colnames(total_m_trend) <- c(" ", " ", " ", " ", " ",)
+dygraph(total_m_trend)
+dygraph(total_m_trend) %>% dyRangeSelector()
+
+df_total_year <- read_excel("통합_월20181011_20190111 (1).xls", sheet="Sheet2")
+df_total_year
+df_total_year_a <- rename(df_total_year, period=, dbry=, dminy=, djay=, dmpyy=, djy=)
+df_total_year_a
+df_total_year_a$period <- as.Date(df_total_year_a$period)
+df_total_year_a$dbry <- as.numeric(df_total_year_a$dbry)
+df_total_year_a$dminy <- as.numeric(df_total_year_a$dminy)
+df_total_year_a$djay <- as.numeric(df_total_year_a$djay)
+df_total_year_a$dmpyy <- as.numeric(df_total_year_a$dmpyy)
+df_total_year_a$djy <- as.numeric(df_total_year_a$djy)
+boxplot(df_total_year_a$dbry, df_total_year_a$dminy, df_total_year_a$djay, df_total_year_a$dmpyy, df_total_year_a$djy)
+
+dbry_trend <- xts(df_total_year_a$dbry, order.by = df_total_year_a$period)
+dminy_trend <- xts(df_total_year_a$dminy, order.by = df_total_year_a$period)
+djay_trend <- xts(df_total_year_a$djay, order.by = df_total_year_a$period)
+dmpyy_trend <- xts(df_total_year_a$dmpyy, order.by = df_total_year_a$period)
+djy_trend <- xts(df_total_year_a$djy, order.by = df_total_year_a$period)
+
+total_year_bind_trend <- cbind(dbry_trend, dminy_trend, djay_trend, dmpyy_trend, djy_trend )
+colnames(total_year_bind_trend) <- c(" ", " ", " ", " ", " ")
+dygraph(total_year_bind_trend)
+
+total_year_trend <- xts(df_total_year_a, order.by = df_total_year_a$period)
+        
