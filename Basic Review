@@ -1,0 +1,91 @@
+df <- data.frame(bundang = c(900, 800, 850),
+                 ilsan = c(550, 700, 780),
+                 pangyo = c(800, 850, 700))
+df
+df_p <- data.frame(product = c("apple", "mango", "melon"),
+                   price = c(30000, 40000, 35000),
+                   sale_amount = c(300, 400, 200))
+df_p
+
+setwd("C:\\DA")
+df_list <- read_excel("da_list.xlsx")
+df_list
+
+View(df_list)
+head(df_list)
+dim(df_list)
+str(df_list)
+summary(df_list)
+
+mpg <- as.data.frame(ggplot2::mpg)
+head(mpg)
+dim(mpg)
+str(mpg)
+summary(mpg)
+
+
+hist(mpg$total)
+
+mpg$standard <- ifelse(mpg$total >= 20.5, "pass", "fail")
+head(mpg, 15)
+tail(mpg, 15)
+
+table(mpg$standard)
+
+qplot(mpg$standard)
+
+mpg$level <- ifelse(mpg$total >= 35, "S",
+                    ifelse(mpg$total >= 30, "A",
+                           ifelse(mpg$total >= 20, "B", "C")))
+head(mpg)
+tail(mpg)
+table(mpg$level)
+qplot(mpg$level)
+
+mpg$level <- ifelse(mpg$total >= 35, "S",
+                    ifelse(mpg$total >= 30, "A",
+                           ifelse(mpg$total >= 25, "B",
+                                  ifelse(mpg$total >= 20, "C", "D"))))
+
+table(mpg$level)
+qplot(mpg$level)
+
+
+data("WorldPhones")
+data
+class(data)
+
+data("quakes")
+quakes
+head(quakes)
+dim(quakes)
+names(quakes)
+str(quakes)
+quakes <- rename(quakes, latitutde = lat, longitude = long)
+quakes
+mean(quakes$depth)
+mean(quakes$mag)
+
+class(quakes)
+class(df_list)
+class(mpg)
+
+midwest <- as.data.frame(ggplot2::midwest)
+midwest
+head(midwest)
+dim(midwest)
+str(midwest)
+summary(midwest)
+
+midwest <- rename(midwest, total = poptotal)
+midwest <- rename(midwest, asian = popasian)
+
+midwest$ratio <- midwest$asian / midwest$total * 100
+midwest
+hist(midwest$ratio)
+
+mean(midwest$ratio)
+midwest$group <- ifelse(midwest$ratio > 0.4872, "large", "small")
+table(midwest$group)
+library(ggplot2)
+qplot(midwest$group)
